@@ -17,12 +17,9 @@ fn part2(input: &[i32]) {
             let fuel = calculate_fuel(mass);
             iter::successors(Some(fuel), |&prev_mass| {
                 let fuel = calculate_fuel(prev_mass);
-                if fuel > 0 {
-                    Some(fuel)
-                } else {
-                    None
-                }
+                Some(fuel)
             })
+            .take_while(|fuel| fuel.is_positive())
             .sum::<i32>()
         })
         .sum();

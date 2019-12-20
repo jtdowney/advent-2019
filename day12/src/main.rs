@@ -1,4 +1,5 @@
 use num_integer;
+use std::cmp::Ordering;
 use std::collections::HashSet;
 use std::io::{self, BufRead};
 
@@ -37,12 +38,10 @@ impl Moon {
 }
 
 fn delta(a: i64, b: i64) -> i64 {
-    if a < b {
-        1
-    } else if a > b {
-        -1
-    } else {
-        0
+    match a.cmp(&b) {
+        Ordering::Less => 1,
+        Ordering::Greater => -1,
+        Ordering::Equal => 0,
     }
 }
 
